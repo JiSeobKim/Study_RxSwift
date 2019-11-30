@@ -1,0 +1,6 @@
+framework module Pods_CopyDust {
+  umbrella header "Pods-CopyDust-umbrella.h"
+
+  export *
+  module * { export * }
+}
