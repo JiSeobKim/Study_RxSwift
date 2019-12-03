@@ -19,6 +19,7 @@ class WeatherDetailInfoView: UIView {
         
         self.titleLabel.text = title
         self.valueLabel.text = value
+        self.setSize()
     }
     
     private func common() {
@@ -28,6 +29,7 @@ class WeatherDetailInfoView: UIView {
         
         self.translatesAutoresizingMaskIntoConstraints = false
         
+        
         // UI
         self.layer.cornerRadius = 5
         self.layer.masksToBounds = true
@@ -35,9 +37,10 @@ class WeatherDetailInfoView: UIView {
     
     func setSize() {
         self.layoutIfNeeded()
-        let frame = self.stackView.bounds
-        self.widthAnchor.constraint(equalToConstant: frame.width + 24).isActive = true
-        self.heightAnchor.constraint(equalToConstant: frame.height).isActive = true
+        let stackWidth = self.stackView.bounds.width + 24
+        // 최소 폭 74
+        let width = CGFloat.maximum(stackWidth, 74)
+        self.widthAnchor.constraint(equalToConstant: width).isActive = true
     }
 
 }

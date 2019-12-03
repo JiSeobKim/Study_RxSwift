@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct WeatherInfo {
+struct WeatherInfo: Codable {
     var pm10Value: String?
     var pm25Value: String?
     var khaiGrade: String?
