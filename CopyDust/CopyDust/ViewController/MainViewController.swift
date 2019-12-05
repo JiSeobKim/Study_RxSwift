@@ -17,7 +17,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var detailInfoStackView: UIStackView!
     
     
-    private var weatherInfo = BehaviorRelay<WeatherInfo>(value: WeatherInfo.getDummyData())
+    private var weatherInfo = BehaviorRelay<StationWeatherInfo>(value: StationWeatherInfo.getDummyData())
     private var bag = DisposeBag()
     
     
@@ -51,22 +51,19 @@ class MainViewController: UIViewController {
             let view = row.getWeathInfoView(drive: drive, bag: bag)
             self.detailInfoStackView.addArrangedSubview(view)
         }
+        
+        
+        NetworkCollection.getKoreaSiWeetherInfo(itemCode: .PM10) { (data) in
+            guard let item = data?.first else { return }
+            print(item)
+        }
     }
     
     // Network
     private func getWeatherInfo() {
-        let api = NetworkType.getList
-        api.basicRequest { (dict) in
-            guard
-                let list = dict?["list"] as? [Any],
-                let nowData = list.first,
-                let jsonData = try? JSONSerialization.data(withJSONObject: nowData, options: .prettyPrinted)
-                else { return }
-
-            // Use Codable
-            guard let object = try? JSONDecoder().decode(WeatherInfo.self, from: jsonData) else { return }
-            
-            self.weatherInfo.accept(object)
+        NetworkCollection.getStationWeatherInfo { (object) in
+            guard object != nil else { return }
+            self.weatherInfo.accept(object!)
         }
     }
 }

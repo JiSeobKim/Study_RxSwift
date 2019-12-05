@@ -9,9 +9,13 @@
 /* Begin PBXBuildFile section */
 		653DB32E6E25151B148AC0F5 /* Pods_CopyDust.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91B359BF77D4E2A796F3C15B /* Pods_CopyDust.framework */; };
 		6BE5E0F82396021A001236EC /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE5E0F72396021A001236EC /* Enums.swift */; };
+		6BE5E0FC239752EB001236EC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE5E0FB239752EB001236EC /* BaseViewController.swift */; };
+		6BE5E0FF239753EC001236EC /* Ex_UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE5E0FE239753EC001236EC /* Ex_UIViewController.swift */; };
+		6BE5E10223978C07001236EC /* NetworkCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE5E10123978C07001236EC /* NetworkCollection.swift */; };
+		6BE5E10423978FE7001236EC /* SubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE5E10323978FE7001236EC /* SubViewController.swift */; };
 		A00160EA239272BB00C791C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00160E9239272BB00C791C4 /* AppDelegate.swift */; };
 		A00160EC239272BB00C791C4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00160EB239272BB00C791C4 /* SceneDelegate.swift */; };
-		A00160EE239272BB00C791C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00160ED239272BB00C791C4 /* ViewController.swift */; };
+		A00160EE239272BB00C791C4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00160ED239272BB00C791C4 /* MainViewController.swift */; };
 		A00160F1239272BB00C791C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A00160EF239272BB00C791C4 /* Main.storyboard */; };
 		A00160F3239272BE00C791C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A00160F2239272BE00C791C4 /* Assets.xcassets */; };
 		A00160F6239272BE00C791C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A00160F4239272BE00C791C4 /* LaunchScreen.storyboard */; };
@@ -23,11 +27,15 @@
 
 /* Begin PBXFileReference section */
 		6BE5E0F72396021A001236EC /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		6BE5E0FB239752EB001236EC /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		6BE5E0FE239753EC001236EC /* Ex_UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ex_UIViewController.swift; sourceTree = "<group>"; };
+		6BE5E10123978C07001236EC /* NetworkCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCollection.swift; sourceTree = "<group>"; };
+		6BE5E10323978FE7001236EC /* SubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubViewController.swift; sourceTree = "<group>"; };
 		91B359BF77D4E2A796F3C15B /* Pods_CopyDust.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CopyDust.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A00160E6239272BB00C791C4 /* CopyDust.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CopyDust.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A00160E9239272BB00C791C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A00160EB239272BB00C791C4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A00160ED239272BB00C791C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A00160ED239272BB00C791C4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A00160F0239272BB00C791C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A00160F2239272BE00C791C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A00160F5239272BE00C791C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -52,6 +60,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6BE5E0F92397527C001236EC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6BE5E0FB239752EB001236EC /* BaseViewController.swift */,
+				A00160ED239272BB00C791C4 /* MainViewController.swift */,
+				6BE5E10323978FE7001236EC /* SubViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		6BE5E0FA239752A0001236EC /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				A001610123928BAD00C791C4 /* WeatherDetailInfoView.swift */,
+				A001610323928BB800C791C4 /* WeatherDetailInfoView.xib */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		6BE5E0FD239753D9001236EC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6BE5E0FE239753EC001236EC /* Ex_UIViewController.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6BE5E10023978BF8001236EC /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A00160FD2392753C00C791C4 /* NetworkUtil.swift */,
+				6BE5E10123978C07001236EC /* NetworkCollection.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		79DCB4DA32FA0E89EC523B91 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,12 +136,12 @@
 			children = (
 				A00160E9239272BB00C791C4 /* AppDelegate.swift */,
 				A00160EB239272BB00C791C4 /* SceneDelegate.swift */,
-				A00160ED239272BB00C791C4 /* ViewController.swift */,
-				A00160FD2392753C00C791C4 /* NetworkUtil.swift */,
+				6BE5E0FA239752A0001236EC /* CustomViews */,
+				6BE5E0F92397527C001236EC /* ViewController */,
+				6BE5E10023978BF8001236EC /* Network */,
+				6BE5E0FD239753D9001236EC /* Extensions */,
 				A00160FF239284A300C791C4 /* Models.swift */,
-				A001610123928BAD00C791C4 /* WeatherDetailInfoView.swift */,
 				6BE5E0F72396021A001236EC /* Enums.swift */,
-				A001610323928BB800C791C4 /* WeatherDetailInfoView.xib */,
 				A00160EF239272BB00C791C4 /* Main.storyboard */,
 				A00160F2239272BE00C791C4 /* Assets.xcassets */,
 				A00160F4239272BE00C791C4 /* LaunchScreen.storyboard */,
@@ -222,11 +266,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BE5E10223978C07001236EC /* NetworkCollection.swift in Sources */,
 				A001610223928BAD00C791C4 /* WeatherDetailInfoView.swift in Sources */,
+				6BE5E10423978FE7001236EC /* SubViewController.swift in Sources */,
+				6BE5E0FF239753EC001236EC /* Ex_UIViewController.swift in Sources */,
 				A00160FE2392753C00C791C4 /* NetworkUtil.swift in Sources */,
-				A00160EE239272BB00C791C4 /* ViewController.swift in Sources */,
+				A00160EE239272BB00C791C4 /* MainViewController.swift in Sources */,
 				A00160EA239272BB00C791C4 /* AppDelegate.swift in Sources */,
 				6BE5E0F82396021A001236EC /* Enums.swift in Sources */,
+				6BE5E0FC239752EB001236EC /* BaseViewController.swift in Sources */,
 				A00160EC239272BB00C791C4 /* SceneDelegate.swift in Sources */,
 				A0016100239284A300C791C4 /* Models.swift in Sources */,
 			);

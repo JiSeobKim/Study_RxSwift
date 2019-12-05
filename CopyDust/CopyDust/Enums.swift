@@ -6,10 +6,12 @@
 //  Copyright © 2019 김지섭. All rights reserved.
 //
 
+import RxSwift
+import RxCocoa
 
 // 메인 하단 스크롤 정보 및 뷰
 enum MoreWeatherInfos: String, CaseIterable {
-    case pm10Value = "미세먼지"뷰
+    case pm10Value = "미세먼지"
     case pm25Value = "초미세먼지"
     case khaiGrade = "통합대기지수"
     case o3Grade = "오존"
@@ -18,7 +20,7 @@ enum MoreWeatherInfos: String, CaseIterable {
     case so2Grade = "아황산가스"
     
     
-    func getWeathInfoView(drive:SharedSequence<DriverSharingStrategy, WeatherInfo>, bag: DisposeBag) -> WeatherDetailInfoView {
+    func getWeathInfoView(drive:SharedSequence<DriverSharingStrategy, StationWeatherInfo>, bag: DisposeBag) -> WeatherDetailInfoView {
         let view = WeatherDetailInfoView(title: self.rawValue, value: "100")
         
         // bind
@@ -62,4 +64,34 @@ enum MoreWeatherInfos: String, CaseIterable {
         
         return view
     }
+}
+
+
+/// Si Type
+enum SiType: String, CaseIterable {
+    case daegu
+    case daejeon
+    case gangwon
+    case gwangju
+    case gyeongbuk
+    case gyeonggi
+    case gyeongnam
+    case incheon
+    case jeju
+    case jeonbuk
+    case jeonnam
+    case sejong
+    case seoul
+    case ulsan
+}
+
+enum Testtt: CaseIterable {
+    case no1
+    case no2
+    case no3
+}
+
+/// Weather Item Type
+enum WeatherItemType: String {
+    case SO2, CO, O3, NO2, PM10, PM25
 }

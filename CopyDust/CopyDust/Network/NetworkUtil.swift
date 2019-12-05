@@ -16,7 +16,8 @@ enum NetworkMethod: String {
 }
 
 enum NetworkType {
-    case getList
+    case weatherInfoByStation
+    case weatherInfoByItem(code: WeatherItemType)
     
     var serviceKey: String {
         return "VA9nd0hmRz%2Bc8ocwyUox2LPjwgptJdH5CixEPjQrZHQ%2Fo7gT6Fh6zmR%2Bx05bLCm%2B4zCU8QX%2BOSLtKW9eE3RRuw%3D%3D"
@@ -27,13 +28,17 @@ enum NetworkType {
         var url = "http://openapi.airkorea.or.kr/openapi/services/rest"
         
         switch self {
-        case .getList:
+        case .weatherInfoByStation:
             
-            let qParam = "/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty?stationName=종로구&dataTerm=DAILY&pageNo=1&numOfRows=10&ver=1.3"
+            let etc = "/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty?stationName=종로구&dataTerm=DAILY&pageNo=1&numOfRows=10&ver=1.3"
             
             
-            url += qParam
+            url += etc
             
+        case .weatherInfoByItem(let code):
+            let etc = "/ArpltnInforInqireSvc/getCtprvnMesureLIst?itemCode=\(code.rawValue)&dataGubun=HOUR&searchCondition=WEEK&pageNo=1&numOfRows=10"
+        
+            url += etc
         }
         // encoding
         if let encoded = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
