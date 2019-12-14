@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,7 @@
 		8BA3C3232234E11300DD11C1 /* MovieStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3C3222234E11300DD11C1 /* MovieStore.swift */; };
 		8BA3C3252234E15400DD11C1 /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3C3242234E15400DD11C1 /* MovieService.swift */; };
 		8BA3C3332238162700DD11C1 /* UISegmentedControl+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3C3322238162700DD11C1 /* UISegmentedControl+Extension.swift */; };
+		A04B163923A4FC1500B6E6D7 /* MovieSearchViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04B163823A4FC1500B6E6D7 /* MovieSearchViewViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		8BA3C3222234E11300DD11C1 /* MovieStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieStore.swift; sourceTree = "<group>"; };
 		8BA3C3242234E15400DD11C1 /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieService.swift; sourceTree = "<group>"; };
 		8BA3C3322238162700DD11C1 /* UISegmentedControl+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Extension.swift"; sourceTree = "<group>"; };
+		A04B163823A4FC1500B6E6D7 /* MovieSearchViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchViewViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			children = (
 				6B7F5F5123A4D5A50086840D /* MovieViewViewModel.swift */,
 				6BFD4C0723A4E6FB00E56D61 /* MovieListViewViewModel.swift */,
+				A04B163823A4FC1500B6E6D7 /* MovieSearchViewViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -281,26 +284,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MovieInfo/Pods-MovieInfo-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-MovieInfo/Pods-MovieInfo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-MovieInfo/Pods-MovieInfo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MovieInfo/Pods-MovieInfo-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MovieInfo/Pods-MovieInfo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -313,6 +305,7 @@
 				8BA3C3332238162700DD11C1 /* UISegmentedControl+Extension.swift in Sources */,
 				6B7F5F5223A4D5A50086840D /* MovieViewViewModel.swift in Sources */,
 				8BA3C3022234D68B00DD11C1 /* AppDelegate.swift in Sources */,
+				A04B163923A4FC1500B6E6D7 /* MovieSearchViewViewModel.swift in Sources */,
 				8BA3C3142234D8E300DD11C1 /* MovieListViewController.swift in Sources */,
 				8BA3C3232234E11300DD11C1 /* MovieStore.swift in Sources */,
 				8BA3C31D2234DDE200DD11C1 /* MovieCell.swift in Sources */,
