@@ -10,21 +10,50 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    var messierViewModel: MessierViewModel?
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var updatedLabel: UILabel!
+    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        imageView.alpha = 0
+        
+        let imageCompletionClosure = { (imageData: NSData) -> Void in
+            
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 1.0) {
+                    self.imageView.alpha = 1
+                    self.imageView.image = UIImage(data: imageData as Data)
+                    self.view.setNeedsDisplay()
+                }
+                self.activitySpinner.stopAnimating()
+            }
+        }
+        
+        self.activitySpinner.startAnimating()
+        
+        titleLabel.text = messierViewModel?.formalName
+        subtitleLabel.text = messierViewModel?.commonName
+        updatedLabel.text = messierViewModel?.dateUpdate
+        descriptionTextView.attributedText = messierViewModel?.textDescription
+        
+        messierViewModel?.download(completionHandler: imageCompletionClosure)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.descriptionTextView.setContentOffset(.zero, animated: false)
     }
-    */
+    
+    
+    
+
+    
 
 }

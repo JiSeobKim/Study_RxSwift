@@ -31,9 +31,10 @@ struct MessierDataModel {
     let description: String // Messier object description
     let thumbnail:  String  // placeholder for detail image
     
-    var dateString: String {
-        return String(self.updateDate.year) + "-" + String(self.updateDate.month) + "-" + String(self.updateDate.day) + "-"
-    }
+    // MARK: - 이러면 안댐
+//    var dateString: String {
+//        return String(self.updateDate.year) + "-" + String(self.updateDate.month) + "-" + String(self.updateDate.day)
+//    }
 }
 
 // MARK: - Model Data

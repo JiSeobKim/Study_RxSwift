@@ -10,12 +10,26 @@ import UIKit
 
 class MVVMViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DetailSegue" {
+            if let destinationVC = segue.destination as? DetailViewController {
+                let indexPath = self.tableView.indexPathForSelectedRow!
+                let index = indexPath.row
+                
+                destinationVC.messierViewModel = messierViewModel[index]
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation

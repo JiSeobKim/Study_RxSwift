@@ -7,3 +7,11 @@
 //
 
 import Foundation
+import UIKit
+
+extension MVVMViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
