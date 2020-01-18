@@ -10,7 +10,7 @@ protocol ValidationViewModel {
     var errorMessage: String {get}
     
     var data: BehaviorRelay<String> {get set}
-    var errorValue: BehaviorRelay<String?> {get}
+    var errorValue: BehaviorRelay<String> {get}
     
     func validateCredentials() -> Bool
     

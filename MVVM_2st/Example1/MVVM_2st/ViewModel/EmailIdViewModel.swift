@@ -12,7 +12,7 @@ class EmailIdViewModel: ValidationViewModel {
     var errorMessage: String = "Please enter a valid Email Id"
     
     var data: BehaviorRelay<String> = .init(value: "")
-    var errorValue: BehaviorRelay<String?> = .init(value: "")
+    var errorValue: BehaviorRelay<String> = .init(value: "")
     
     func validateCredentials() -> Bool {
         guard validatePattern(text: data.value) else {
@@ -20,7 +20,7 @@ class EmailIdViewModel: ValidationViewModel {
             return false
         }
         
-        errorValue.accept("")
+//        errorValue.accept("")
         return true
     }
     

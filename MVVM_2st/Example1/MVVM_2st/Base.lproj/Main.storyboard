@@ -35,13 +35,33 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ye9-7s-xIO">
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="gEl-yG-Bmu"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KoP-Ye-4sA" userLabel="상단노치배경">
+                                <rect key="frame" x="0.0" y="-6" width="414" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="M0w-hG-EQi"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="jVa-1Z-kTo" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="139-6R-GqS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jVa-1Z-kTo" secondAttribute="trailing" constant="24" id="39G-dL-ipU"/>
                             <constraint firstItem="jVa-1Z-kTo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PxC-pB-PU6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ye9-7s-xIO" secondAttribute="trailing" id="Sev-G8-meo"/>
+                            <constraint firstItem="Ye9-7s-xIO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Sn7-iL-qk6"/>
                             <constraint firstItem="jVa-1Z-kTo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="jjH-cH-85U"/>
+                            <constraint firstAttribute="trailing" secondItem="KoP-Ye-4sA" secondAttribute="trailing" id="kps-fx-Fi3"/>
+                            <constraint firstItem="Ye9-7s-xIO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="nYP-P4-KaE"/>
+                            <constraint firstItem="Ye9-7s-xIO" firstAttribute="top" secondItem="KoP-Ye-4sA" secondAttribute="bottom" id="uDa-RD-y32"/>
+                            <constraint firstItem="KoP-Ye-4sA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wYR-sK-5GA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 class LoginViewModel {
-    let model: LoginModel = LoginModel()
+    private let model: LoginModel = LoginModel()
     let disposeBag = DisposeBag()
     
     let emailIdViewModel = EmailIdViewModel()
@@ -19,6 +19,13 @@ class LoginViewModel {
     let isSuccess: BehaviorRelay<Bool> = .init(value: false)
     let isLoading: BehaviorRelay<Bool> = .init(value: false)
     let errorMsg: BehaviorRelay<String> = .init(value: "")
+    
+    
+    init() {
+        emailIdViewModel.errorValue.asDriver().drive(errorMsg).disposed(by: disposeBag)
+        passwordViewModel.errorValue.asDriver().drive(errorMsg).disposed(by: disposeBag)
+        
+    }
     
     func validateCredentials() -> Bool {
         return emailIdViewModel.validateCredentials() && passwordViewModel.validateCredentials()

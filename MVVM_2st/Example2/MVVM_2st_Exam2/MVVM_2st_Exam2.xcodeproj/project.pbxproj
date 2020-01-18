@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B5646EB23B8651D00A2B1A8 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5646EA23B8651D00A2B1A8 /* Util.swift */; };
 		6B5DD43D23B5E94B009B4F79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5DD43C23B5E94B009B4F79 /* AppDelegate.swift */; };
 		6B5DD43F23B5E94B009B4F79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5DD43E23B5E94B009B4F79 /* ViewController.swift */; };
 		6B5DD44223B5E94B009B4F79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B5DD44023B5E94B009B4F79 /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6B5646EA23B8651D00A2B1A8 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		6B5DD43923B5E94B009B4F79 /* MVVM_2st_Exam2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVVM_2st_Exam2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B5DD43C23B5E94B009B4F79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6B5DD43E23B5E94B009B4F79 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			children = (
 				6B5DD43C23B5E94B009B4F79 /* AppDelegate.swift */,
 				6B5DD43E23B5E94B009B4F79 /* ViewController.swift */,
+				6B5646EA23B8651D00A2B1A8 /* Util.swift */,
 				6B5DD45023B5EF1D009B4F79 /* MVVM_Example */,
 				6B5DD44323B5E94E009B4F79 /* Assets.xcassets */,
 				6B5DD44823B5E94E009B4F79 /* Info.plist */,
@@ -194,6 +197,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B5DD45823B5F02C009B4F79 /* VC-Extension+TableViewDataSource.swift in Sources */,
+				6B5646EB23B8651D00A2B1A8 /* Util.swift in Sources */,
 				6B5DD43F23B5E94B009B4F79 /* ViewController.swift in Sources */,
 				6B5DD43D23B5E94B009B4F79 /* AppDelegate.swift in Sources */,
 				6B5DD44F23B5EEE3009B4F79 /* MVVMViewController.swift in Sources */,

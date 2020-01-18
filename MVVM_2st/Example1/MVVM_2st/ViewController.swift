@@ -49,6 +49,8 @@ class ViewController: UIViewController {
                     self?.viewModel.loginUser()
                 }
             }).disposed(by: disposeBag)
+        
+        
     }
     
     private func createCallBacks() {
@@ -60,7 +62,7 @@ class ViewController: UIViewController {
         
         self.viewModel.errorMsg.asObservable().skip(1)
             .bind { errorMessage in
-                print("Failure!!")
+                print(errorMessage)
         }.disposed(by: disposeBag)
     }
 
