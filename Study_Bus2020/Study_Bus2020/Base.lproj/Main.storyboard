@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OWh-So-vkG">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Bus-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Study_Bus2020" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Bus" largeTitleDisplayMode="always" id="dpq-VW-fYt">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="A5l-LU-e3O">
+                            <connections>
+                                <segue destination="VwO-EJ-NLF" kind="show" id="2Ty-mV-zl1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="137.94642857142856"/>
+        </scene>
+        <!--추가하기-->
+        <scene sceneID="xYy-oB-V0P">
+            <objects>
+                <viewController id="VwO-EJ-NLF" customClass="AddViewController" customModule="Study_Bus2020" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="P5s-rB-0ec">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="wdy-CJ-Qgh">
+                                <rect key="frame" x="0.0" y="149" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="iEj-PN-opG">
+                                <rect key="frame" x="8" y="212.5" width="398" height="32"/>
+                                <segments>
+                                    <segment title="버스 번호"/>
+                                    <segment title="정류장 번호"/>
+                                </segments>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DpV-8e-jZ5">
+                                <rect key="frame" x="8" y="243.5" width="398" height="652.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="50"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ode-Gg-GEq" firstAttribute="trailing" secondItem="DpV-8e-jZ5" secondAttribute="trailing" constant="8" id="6yA-BR-0xc"/>
+                            <constraint firstItem="wdy-CJ-Qgh" firstAttribute="leading" secondItem="ode-Gg-GEq" secondAttribute="leading" id="Cem-88-eyc"/>
+                            <constraint firstAttribute="bottom" secondItem="DpV-8e-jZ5" secondAttribute="bottom" id="DrQ-8u-HFv"/>
+                            <constraint firstItem="iEj-PN-opG" firstAttribute="top" secondItem="wdy-CJ-Qgh" secondAttribute="bottom" constant="8" id="LsA-Ke-fSq"/>
+                            <constraint firstItem="DpV-8e-jZ5" firstAttribute="top" secondItem="iEj-PN-opG" secondAttribute="bottom" id="WFe-DK-U9S"/>
+                            <constraint firstItem="DpV-8e-jZ5" firstAttribute="leading" secondItem="ode-Gg-GEq" secondAttribute="leading" constant="8" id="XvB-72-uXS"/>
+                            <constraint firstItem="ode-Gg-GEq" firstAttribute="trailing" secondItem="iEj-PN-opG" secondAttribute="trailing" constant="8" id="ba6-P3-Xw7"/>
+                            <constraint firstItem="iEj-PN-opG" firstAttribute="centerX" secondItem="P5s-rB-0ec" secondAttribute="centerX" id="nzL-gY-BKf"/>
+                            <constraint firstItem="iEj-PN-opG" firstAttribute="leading" secondItem="ode-Gg-GEq" secondAttribute="leading" constant="8" id="x0j-CB-R3u"/>
+                            <constraint firstItem="wdy-CJ-Qgh" firstAttribute="top" secondItem="ode-Gg-GEq" secondAttribute="top" id="zoN-en-qsh"/>
+                            <constraint firstItem="wdy-CJ-Qgh" firstAttribute="trailing" secondItem="ode-Gg-GEq" secondAttribute="trailing" id="zq7-2x-Y0j"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ode-Gg-GEq"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="추가하기" id="n7n-5b-pvZ"/>
+                    <connections>
+                        <outlet property="searchBar" destination="wdy-CJ-Qgh" id="AHb-an-kBE"/>
+                        <outlet property="segment" destination="iEj-PN-opG" id="PzG-Mz-BK4"/>
+                        <outlet property="tableView" destination="DpV-8e-jZ5" id="VIl-aC-29G"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kYe-n6-UxH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1767" y="142"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0Q5-vk-Xvh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OWh-So-vkG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="V7x-h3-nlo">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="xdD-fc-YlE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vmn-16-GWv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+    </scenes>
+</document>

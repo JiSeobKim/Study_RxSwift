@@ -1,0 +1,6 @@
+framework module Pods_Study_Bus2020 {
+  umbrella header "Pods-Study_Bus2020-umbrella.h"
+
+  export *
+  module * { export * }
+}
