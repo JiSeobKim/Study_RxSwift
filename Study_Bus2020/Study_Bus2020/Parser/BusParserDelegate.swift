@@ -11,9 +11,6 @@ import Foundation
 protocol BusParserType {}
 
 protocol BusParserDelegate: XMLParserDelegate {
-    var data: Data {get set}
-    var parserKey: String? {get set}
-    var dataParser: XMLParser {get set}
     func parser()
     func reset()
     func add()

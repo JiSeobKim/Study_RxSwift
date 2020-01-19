@@ -8,31 +8,44 @@
 
 import Foundation
 
-class BusStopListViewModel: NSObject, BusParserDelegate, BusDataSource {
+import RxCocoa
 
+class BusStopListViewModel: NSObject, BusParserDelegate, BusDataSource {
+    
     var objectList: [Any?] {
         return self.list
     }
     
-    var data: Data
-    var item: BusStopListItem = .init()
-    var list: [BusStopListItem] = []
-    var dataParser: XMLParser
+    var data: Data? {
+        didSet {
+            guard data != nil else { return }
+            self.dataParser = XMLParser(data: self.data!)
+            self.parser()
+        }
+    }
+    private var item: BusStopListItem = .init()
+    private var list: [BusStopListItem] = []
+    
+    var isChanged: BehaviorRelay<Bool> = .init(value: false)
+    
+    var listObservable: BehaviorRelay<[BusStopListItem]> = .init(value: [])
+    
+    var dataParser: XMLParser?
     var parserKey: String?
     
     
-    init(data: Data) {
-        self.data = data
-        self.dataParser = XMLParser(data: self.data)
-    }
-    
     func parser() {
-        self.dataParser.delegate = self
-        self.dataParser.parse()
+        guard self.dataParser != nil else { return }
+        self.dataParser?.delegate = self
+        self.dataParser?.parse()
     }
-    func reset() {
+    func resetKeyword() {
         self.parserKey = nil
         self.item = .init()
+    }
+    
+    func reset() {
+        self.list = []
     }
     
     func add() {
@@ -45,9 +58,15 @@ class BusStopListViewModel: NSObject, BusParserDelegate, BusDataSource {
     }
 
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if elementName == "itemList" {
+        
+        switch elementName {
+        case "itemList":
             self.add()
-            self.reset()
+            self.resetKeyword()
+        case "ServiceResult":
+            self.isChanged.accept(true)
+        default:
+            break
         }
     }
 
@@ -73,6 +92,11 @@ class BusStopListViewModel: NSObject, BusParserDelegate, BusDataSource {
     }
     
     func searchData(text: String) {
+        let network = NetworkUtil.busStopListByName(text: text)
+        self.reset()
         
+        network.request { (data) in
+            self.data = data
+        }
     }
 }

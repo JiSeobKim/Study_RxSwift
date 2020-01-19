@@ -7,30 +7,26 @@
 //
 
 import Foundation
+import RxCocoa
 
 class BusStationInfoByIDViewModel: NSObject, BusParserDelegate, BusDataSource {
-    func searchData(text: String) {
-    }
-    
-    
+
     var objectList: [Any?] {
         return self.list
     }
     
-    var data: Data
+    var data: Data?
     var parserKey: String?
-    var dataParser: XMLParser
+    var dataParser: XMLParser?
     var item: BusStationInfoByID = .init()
     var list: [BusStationInfoByID] = []
+    var isChanged: BehaviorRelay<Bool> = .init(value: false)
     
-    init(data: Data) {
-        self.data = data
-        self.dataParser = XMLParser(data: self.data)
-    }
     
     func parser() {
-        self.dataParser.delegate = self
-        self.dataParser.parse()
+        guard self.dataParser != nil else { return }
+        self.dataParser?.delegate = self
+        self.dataParser?.parse()
     }
     func reset() {
         self.parserKey = nil
@@ -84,4 +80,6 @@ class BusStationInfoByIDViewModel: NSObject, BusParserDelegate, BusDataSource {
         }
     }
     
+    func searchData(text: String) {
+    }
 }

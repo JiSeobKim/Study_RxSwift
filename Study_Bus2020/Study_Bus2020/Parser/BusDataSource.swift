@@ -7,10 +7,15 @@
 //
 
 import Foundation
-
+import RxCocoa
 
 protocol BusDataSource {
     var objectList: [Any?] { get }
+    
+    var data: Data? {get set}
+    var parserKey: String? {get set}
+    var dataParser: XMLParser? {get set}
+    var isChanged: BehaviorRelay<Bool> {get set}
     
     func searchData(text: String) -> Void
 }
