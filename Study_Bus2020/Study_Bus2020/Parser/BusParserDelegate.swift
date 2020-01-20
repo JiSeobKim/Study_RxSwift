@@ -8,7 +8,6 @@
 
 import Foundation
 
-protocol BusParserType {}
 
 protocol BusParserDelegate: XMLParserDelegate {
     func parser()

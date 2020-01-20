@@ -34,6 +34,9 @@ class AddViewController: UIViewController {
     }
     private var bag = DisposeBag()
     private var viewModelBag = DisposeBag()
+    //0
+    //1
+    //2
     private var stationListViewModel = BusStopListViewModel()
     
 
