@@ -13,9 +13,11 @@ import Alamofire
 
 enum NetworkUtil {
     // 버스 정류소 목록 정보 조회 by 검색어
-    case busStopListByKeyword(text: String)
+    case busStopListByKeyword(_ text: String)
     // 정류소의 버스 목록 조회 by ID
-    case stationBusListByStationID(num: String)
+    case stationBusListByStationID(_ id: String)
+    // 버스 번호로 버스 리스트 검색
+    case busListByNumber(_ num: String)
     
     
     static var serviceKey = "esWE%2F4MoJGj6WtDlz9ohkyCCrWrrinS30s21ynJD2s9N2B5zv7Z4rGnQKg1QT84eaTOQSlgUTPpTzOYUU5MIRA%3D%3D"
@@ -28,9 +30,10 @@ enum NetworkUtil {
         switch self {
         case .busStopListByKeyword:
             base += "/stationinfo/getStationByName"
-            
         case .stationBusListByStationID:
             base += "/stationinfo/getRouteByStation"
+        case .busListByNumber:
+            base += "/busRouteInfo/getBusRouteList"
         }
         
         return base
@@ -43,8 +46,10 @@ enum NetworkUtil {
         switch self {
         case .busStopListByKeyword(let text):
             query = "stSrch=\(text)"
-        case .stationBusListByStationID(let num):
-            query = "arsId=\(num)"
+        case .stationBusListByStationID(let id):
+            query = "arsId=\(id)"
+        case .busListByNumber(let num):
+            query = "strSrch\(num)"
         }
         query = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         query += "&serviceKey=\(NetworkUtil.serviceKey)"

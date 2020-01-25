@@ -25,7 +25,22 @@
 		A04DFA9223D3403A007A9209 /* BusArrivalInfoOnStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04DFA9123D3403A007A9209 /* BusArrivalInfoOnStation.swift */; };
 		A04DFA9423D340A9007A9209 /* BusArrivalInfoOnStationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04DFA9323D340A9007A9209 /* BusArrivalInfoOnStationViewModel.swift */; };
 		A04DFA9623D3479A007A9209 /* BusDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04DFA9523D3479A007A9209 /* BusDataSource.swift */; };
+		A0786D4F23DC879B007764B5 /* Study_Bus2020_Unit_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0786D4E23DC879B007764B5 /* Study_Bus2020_Unit_Tests.swift */; };
+		A0786D5723DC88E5007764B5 /* BusInfomation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0786D5623DC88E5007764B5 /* BusInfomation.swift */; };
+		A0786D5823DC88E5007764B5 /* BusInfomation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0786D5623DC88E5007764B5 /* BusInfomation.swift */; };
+		A0786D5A23DC8ADE007764B5 /* BusInfoListByNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0786D5923DC8ADE007764B5 /* BusInfoListByNumberViewModel.swift */; };
+		A0786D5B23DC8ADE007764B5 /* BusInfoListByNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0786D5923DC8ADE007764B5 /* BusInfoListByNumberViewModel.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A0786D5123DC879B007764B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6B5CE4E123D2EC6A007E2ADD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6B5CE4E823D2EC6A007E2ADD;
+			remoteInfo = Study_Bus2020;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2EA8589554C2DE8A5413812C /* Pods-Study_Bus2020.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Study_Bus2020.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Study_Bus2020/Pods-Study_Bus2020.debug.xcconfig"; sourceTree = "<group>"; };
@@ -48,6 +63,11 @@
 		A04DFA9123D3403A007A9209 /* BusArrivalInfoOnStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusArrivalInfoOnStation.swift; sourceTree = "<group>"; };
 		A04DFA9323D340A9007A9209 /* BusArrivalInfoOnStationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusArrivalInfoOnStationViewModel.swift; sourceTree = "<group>"; };
 		A04DFA9523D3479A007A9209 /* BusDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusDataSource.swift; sourceTree = "<group>"; };
+		A0786D4C23DC879B007764B5 /* Study_Bus2020_Unit_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Study_Bus2020_Unit_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0786D4E23DC879B007764B5 /* Study_Bus2020_Unit_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Study_Bus2020_Unit_Tests.swift; sourceTree = "<group>"; };
+		A0786D5023DC879B007764B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0786D5623DC88E5007764B5 /* BusInfomation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusInfomation.swift; sourceTree = "<group>"; };
+		A0786D5923DC8ADE007764B5 /* BusInfoListByNumberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusInfoListByNumberViewModel.swift; sourceTree = "<group>"; };
 		C72E700B51473AB4B25B4168 /* Pods-Study_Bus2020.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Study_Bus2020.release.xcconfig"; path = "Pods/Target Support Files/Pods-Study_Bus2020/Pods-Study_Bus2020.release.xcconfig"; sourceTree = "<group>"; };
 		CED74CC4730B30F9F9637C22 /* Pods_Study_Bus2020.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Study_Bus2020.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -61,6 +81,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A0786D4923DC879B007764B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -68,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				6B5CE4EB23D2EC6A007E2ADD /* Study_Bus2020 */,
+				A0786D4D23DC879B007764B5 /* Study_Bus2020_Unit_Tests */,
 				6B5CE4EA23D2EC6A007E2ADD /* Products */,
 				88A2B9A53FBF7CA8866D36F4 /* Pods */,
 				A4F4DB20749476CAE88042C5 /* Frameworks */,
@@ -78,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				6B5CE4E923D2EC6A007E2ADD /* Study_Bus2020.app */,
+				A0786D4C23DC879B007764B5 /* Study_Bus2020_Unit_Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -124,6 +153,7 @@
 				A04DFA8623D32DED007A9209 /* BusStopListViewModel.swift */,
 				A04DFA9323D340A9007A9209 /* BusArrivalInfoOnStationViewModel.swift */,
 				A04DFA8A23D33D16007A9209 /* BusStationInfoByIDViewModel.swift */,
+				A0786D5923DC8ADE007764B5 /* BusInfoListByNumberViewModel.swift */,
 				A04DFA8823D33532007A9209 /* BusParserDelegate.swift */,
 				A04DFA9523D3479A007A9209 /* BusDataSource.swift */,
 			);
@@ -136,8 +166,18 @@
 				A04DFA8D23D33D3F007A9209 /* BusStationInfoByID.swift */,
 				A04DFA9123D3403A007A9209 /* BusArrivalInfoOnStation.swift */,
 				A04DFA8F23D33D49007A9209 /* BusStopListItem.swift */,
+				A0786D5623DC88E5007764B5 /* BusInfomation.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A0786D4D23DC879B007764B5 /* Study_Bus2020_Unit_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				A0786D4E23DC879B007764B5 /* Study_Bus2020_Unit_Tests.swift */,
+				A0786D5023DC879B007764B5 /* Info.plist */,
+			);
+			path = Study_Bus2020_Unit_Tests;
 			sourceTree = "<group>";
 		};
 		A4F4DB20749476CAE88042C5 /* Frameworks */ = {
@@ -170,6 +210,24 @@
 			productReference = 6B5CE4E923D2EC6A007E2ADD /* Study_Bus2020.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A0786D4B23DC879B007764B5 /* Study_Bus2020_Unit_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0786D5523DC879B007764B5 /* Build configuration list for PBXNativeTarget "Study_Bus2020_Unit_Tests" */;
+			buildPhases = (
+				A0786D4823DC879B007764B5 /* Sources */,
+				A0786D4923DC879B007764B5 /* Frameworks */,
+				A0786D4A23DC879B007764B5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A0786D5223DC879B007764B5 /* PBXTargetDependency */,
+			);
+			name = Study_Bus2020_Unit_Tests;
+			productName = Study_Bus2020_Unit_Tests;
+			productReference = A0786D4C23DC879B007764B5 /* Study_Bus2020_Unit_Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -182,6 +240,10 @@
 				TargetAttributes = {
 					6B5CE4E823D2EC6A007E2ADD = {
 						CreatedOnToolsVersion = 11.3;
+					};
+					A0786D4B23DC879B007764B5 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 6B5CE4E823D2EC6A007E2ADD;
 					};
 				};
 			};
@@ -199,6 +261,7 @@
 			projectRoot = "";
 			targets = (
 				6B5CE4E823D2EC6A007E2ADD /* Study_Bus2020 */,
+				A0786D4B23DC879B007764B5 /* Study_Bus2020_Unit_Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -211,6 +274,13 @@
 				6B5CE4FC23D2EC6B007E2ADD /* LaunchScreen.storyboard in Resources */,
 				6B5CE4F923D2EC6B007E2ADD /* Assets.xcassets in Resources */,
 				6B5CE4F423D2EC6A007E2ADD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0786D4A23DC879B007764B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,13 +355,33 @@
 				6B5CE4EF23D2EC6A007E2ADD /* SceneDelegate.swift in Sources */,
 				6B5CE50423D2EE05007E2ADD /* MainViewController.swift in Sources */,
 				A04DFA8923D33532007A9209 /* BusParserDelegate.swift in Sources */,
+				A0786D5A23DC8ADE007764B5 /* BusInfoListByNumberViewModel.swift in Sources */,
 				A04DFA9623D3479A007A9209 /* BusDataSource.swift in Sources */,
+				A0786D5723DC88E5007764B5 /* BusInfomation.swift in Sources */,
 				A04DFA9423D340A9007A9209 /* BusArrivalInfoOnStationViewModel.swift in Sources */,
 				A04DFA8723D32DED007A9209 /* BusStopListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A0786D4823DC879B007764B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0786D5823DC88E5007764B5 /* BusInfomation.swift in Sources */,
+				A0786D5B23DC8ADE007764B5 /* BusInfoListByNumberViewModel.swift in Sources */,
+				A0786D4F23DC879B007764B5 /* Study_Bus2020_Unit_Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A0786D5223DC879B007764B5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6B5CE4E823D2EC6A007E2ADD /* Study_Bus2020 */;
+			targetProxy = A0786D5123DC879B007764B5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6B5CE4F223D2EC6A007E2ADD /* Main.storyboard */ = {
@@ -465,6 +555,46 @@
 			};
 			name = Release;
 		};
+		A0786D5323DC879B007764B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HWY63NUUS4;
+				INFOPLIST_FILE = Study_Bus2020_Unit_Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.JS.Study.Study-Bus2020-Unit-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Study_Bus2020.app/Study_Bus2020";
+			};
+			name = Debug;
+		};
+		A0786D5423DC879B007764B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HWY63NUUS4;
+				INFOPLIST_FILE = Study_Bus2020_Unit_Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.JS.Study.Study-Bus2020-Unit-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Study_Bus2020.app/Study_Bus2020";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -482,6 +612,15 @@
 			buildConfigurations = (
 				6B5CE50123D2EC6B007E2ADD /* Debug */,
 				6B5CE50223D2EC6B007E2ADD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A0786D5523DC879B007764B5 /* Build configuration list for PBXNativeTarget "Study_Bus2020_Unit_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0786D5323DC879B007764B5 /* Debug */,
+				A0786D5423DC879B007764B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
