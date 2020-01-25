@@ -12,9 +12,10 @@ import Alamofire
 
 
 enum NetworkUtil {
-    
-    case busStopListByName(text: String)
-    case busStopInfoByStationID(num: String)
+    // 버스 정류소 목록 정보 조회 by 검색어
+    case busStopListByKeyword(text: String)
+    // 정류소의 버스 목록 조회 by ID
+    case stationBusListByStationID(num: String)
     
     
     static var serviceKey = "esWE%2F4MoJGj6WtDlz9ohkyCCrWrrinS30s21ynJD2s9N2B5zv7Z4rGnQKg1QT84eaTOQSlgUTPpTzOYUU5MIRA%3D%3D"
@@ -25,10 +26,10 @@ enum NetworkUtil {
         var base = "http://ws.bus.go.kr/api/rest"
         
         switch self {
-        case .busStopListByName:
+        case .busStopListByKeyword:
             base += "/stationinfo/getStationByName"
             
-        case .busStopInfoByStationID:
+        case .stationBusListByStationID:
             base += "/stationinfo/getRouteByStation"
         }
         
@@ -40,9 +41,9 @@ enum NetworkUtil {
         var query = ""
         
         switch self {
-        case .busStopListByName(let text):
+        case .busStopListByKeyword(let text):
             query = "stSrch=\(text)"
-        case .busStopInfoByStationID(let num):
+        case .stationBusListByStationID(let num):
             query = "arsId=\(num)"
         }
         query = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
@@ -53,7 +54,6 @@ enum NetworkUtil {
     
     func request(complete: @escaping ((Data)->())) {
         let url = self.baseURL + "?" + self.queryParam
-        
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseData { (response) in
             switch response.result {

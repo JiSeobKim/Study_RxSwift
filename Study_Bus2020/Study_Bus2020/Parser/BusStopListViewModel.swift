@@ -92,7 +92,7 @@ class BusStopListViewModel: NSObject, BusParserDelegate, BusDataSource {
     }
     
     func searchData(text: String) {
-        let network = NetworkUtil.busStopListByName(text: text)
+        let network = NetworkUtil.busStopListByKeyword(text: text)
         self.reset()
         
         network.request { (data) in
