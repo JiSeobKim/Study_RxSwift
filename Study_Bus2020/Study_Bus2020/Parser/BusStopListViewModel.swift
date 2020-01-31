@@ -7,7 +7,6 @@
 //
 
 import Foundation
-
 import RxCocoa
 
 class BusStopListViewModel: NSObject, BusParserDelegate, BusDataSource {

@@ -10,7 +10,6 @@ import Foundation
 import Alamofire
 
 
-
 enum NetworkUtil {
     // 버스 정류소 목록 정보 조회 by 검색어
     case busStopListByKeyword(_ text: String)
@@ -49,7 +48,7 @@ enum NetworkUtil {
         case .stationBusListByStationID(let id):
             query = "arsId=\(id)"
         case .busListByNumber(let num):
-            query = "strSrch\(num)"
+            query = "strSrch=\(num)"
         }
         query = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         query += "&serviceKey=\(NetworkUtil.serviceKey)"

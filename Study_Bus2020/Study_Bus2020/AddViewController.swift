@@ -35,6 +35,7 @@ class AddViewController: UIViewController {
     private var bag = DisposeBag()
     private var viewModelBag = DisposeBag()
     //0
+    private var busInfoListViewModel = BusInfoListByNumberViewModel()
     //1
     //2
     private var stationListViewModel = BusStopListViewModel()
@@ -51,6 +52,7 @@ class AddViewController: UIViewController {
                 
                 switch index {
                 case 0:
+                    self.selectedViewModel = self.busInfoListViewModel
                     break
                 case 1:
                     break
@@ -63,13 +65,14 @@ class AddViewController: UIViewController {
                 
             }).disposed(by: bag)
         
-        let searchDriver = self.searchBar.rx.text.orEmpty.asDriver()
-        
-        
-        searchDriver
-            .debounce(.milliseconds(500))
-            .drive(onNext: { (text) in
-                self.selectedViewModel?.searchData(text: text)
+        self.searchBar.rx
+            .text
+            .orEmpty
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { (text) in
+                if text != "" {
+                    self.selectedViewModel?.searchData(text: text)
+                }
             }).disposed(by: bag)
     }
 
@@ -83,7 +86,7 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        
         
         
         
@@ -92,14 +95,33 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
         var text: String?
         
         switch item {
+        case is BusInfomation:
+            let realItem = item as? BusInfomation
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BusInfoCell", for: indexPath)
+            
+            cell.textLabel?.text = realItem?.busRouteNm
+            
+            if let start = realItem?.stStationNm {
+                cell.detailTextLabel?.text = "출발지: \(start)"
+            }
+            
+            
+            return cell
+            
         case is BusStopListItem:
             let realItem = item as? BusStopListItem
             text = realItem?.stNm
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopCell", for: indexPath)
+            cell.textLabel?.text = text
+            
+            return cell
+            
         default:
-            break
+            return UITableViewCell()
         }
         
-        cell.textLabel?.text = text
-        return cell
+        
     }
 }

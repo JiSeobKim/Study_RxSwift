@@ -15,7 +15,13 @@ class BusInfoListByNumberViewModel: NSObject, BusParserDelegate, BusDataSource {
         return self.list
     }
     
-    var data: Data?
+    var data: Data?{
+        didSet {
+            guard data != nil else { return }
+            self.dataParser = XMLParser(data: self.data!)
+            self.parser()
+        }
+    }
     var parserKey: String?
     var dataParser: XMLParser?
     var item: BusInfomation = .init()
@@ -28,9 +34,14 @@ class BusInfoListByNumberViewModel: NSObject, BusParserDelegate, BusDataSource {
         self.dataParser?.delegate = self
         self.dataParser?.parse()
     }
-    func reset() {
+    
+    func resetKeyword() {
         self.parserKey = nil
         self.item = .init()
+    }
+    
+    func reset() {
+        self.list = []
     }
     
     func add() {
@@ -43,9 +54,14 @@ class BusInfoListByNumberViewModel: NSObject, BusParserDelegate, BusDataSource {
     }
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if elementName == "itemList" {
+        switch elementName {
+        case "itemList":
             self.add()
-            self.reset()
+            self.resetKeyword()
+        case "ServiceResult":
+            self.isChanged.accept(true)
+        default:
+            break
         }
     }
     
@@ -83,6 +99,13 @@ class BusInfoListByNumberViewModel: NSObject, BusParserDelegate, BusDataSource {
     }
     
     func searchData(text: String) {
+        
+        let network = NetworkUtil.busListByNumber(text)
+        self.reset()
+        
+        network.request { (data) in
+            self.data = data
+        }
     }
 }
 
