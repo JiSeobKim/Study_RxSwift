@@ -22,6 +22,7 @@ protocol BusDataSource {
 }
 
 protocol AddBusDataSource {
+    var bag: DisposeBag {get set}
     var objectList: [Any?] { get }
     func searchData(text: String) -> Completable
 }

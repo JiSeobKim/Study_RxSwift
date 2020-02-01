@@ -11,6 +11,13 @@ import RxSwift
 import RxCocoa
 
 class AddViewController: UIViewController {
+    
+    enum SelectedType: Int {
+        case searcBusNum
+        case searchStationID
+        case searchStationNm
+    }
+    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             guard tableView != nil else { return }
@@ -21,52 +28,43 @@ class AddViewController: UIViewController {
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    
-    private var selectedViewModel: BusDataSource? {
-        didSet {
-            
-            self.selectedViewModel?.isChanged.subscribe(onNext: { (isChanged) in
-                if isChanged {
-                    self.tableView.reloadData()
-                }
-            }).disposed(by: viewModelBag)
-        }
-    }
     private var newSelectedViewModel: AddBusDataSource?
     
     private var bag = DisposeBag()
-    private var viewModelBag = DisposeBag()
-    //0
-    private var busInfoListViewModel = BusInfoListByNumberViewModel()
-    //1
-    //2
-    private var stationListViewModel = BusStopListViewModel()
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.bindingItems()
+    }
+    
+    var selectedType: SelectedType = .searcBusNum {
+        didSet {
+            switch selectedType {
+            case .searcBusNum:
+                self.newSelectedViewModel = BusInfoListByNumberViewModel()
+            case .searchStationID:
+                self.newSelectedViewModel = BusStationInfoByIDViewModel()
+            case .searchStationNm:
+                self.newSelectedViewModel = BusStopListViewModel()
+            }
+        }
+    }
+    
+    private func bindingItems() {
+        // 세그먼트 변경에 따른 처리
         self.segment.rx
             .selectedSegmentIndex
             .subscribe(onNext: { (index) in
-                
-                self.viewModelBag = DisposeBag()
-                
-                switch index {
-                case 0:
-//                    self.selectedViewModel = self.busInfoListViewModel
-                    break
-                case 1:
-                    break
-                case 2:
-                    self.newSelectedViewModel = self.stationListViewModel
-                    break
-                default:
-                    break
+                // 새 타입 셋팅
+                if let newType = SelectedType(rawValue: index) {
+                    self.selectedType = newType
+                    self.searchBar.text = ""
+                    self.tableView.reloadData()
                 }
-                
             }).disposed(by: bag)
         
+        
+        // Search Text 변화에 따른 검색 처리
         self.searchBar.rx
             .text
             .orEmpty
@@ -81,6 +79,7 @@ class AddViewController: UIViewController {
                             self.tableView.reloadData()
                         }, onError: { (e) in
                             print("Error: \(e)")
+                            self.tableView.reloadData()
                         }).disposed(by: self.bag)
                 }
             }).disposed(by: bag)
@@ -97,34 +96,35 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
-        
-        
         let item = self.newSelectedViewModel?.objectList[indexPath.row]
         
-        var text: String?
-        
-        switch item {
-        case is BusInfomation:
+        switch self.selectedType {
+        case .searcBusNum: // 버스 정보
             let realItem = item as? BusInfomation
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "BusInfoCell", for: indexPath)
-            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SubtitleCell", for: indexPath)
             cell.textLabel?.text = realItem?.busRouteNm
-            
-            if let start = realItem?.stStationNm {
-                cell.detailTextLabel?.text = "출발지: \(start)"
-            }
-            
-            
+            cell.detailTextLabel?.text = "출발지: \((realItem?.stStationNm) ?? "")"
             return cell
             
-        case is BusStopListItem:
-            let realItem = item as? BusStopListItem
-            text = realItem?.stNm
+//        case is BusStationInfoByID:
+//            let realItem = item as? BusStationInfoByID
+//
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "SubtitleCell", for: indexPath)
+//
+//            cell.textLabel?.text = realItem?.busRouteNm
+//
+//            if let start = realItem?.stStationNm {
+//                cell.detailTextLabel?.text = "출발지: \(start)"
+//            }
+//            return cell
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopCell", for: indexPath)
-            cell.textLabel?.text = text
+        case .searchStationNm:
+            let realItem = item as? BusStopListItem
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SubtitleCell", for: indexPath)
+            cell.textLabel?.text = realItem?.stNm
+            cell.detailTextLabel?.text = "정류장 번호: \((realItem?.arsId) ?? "")"
             
             return cell
             

@@ -7,18 +7,15 @@
 //
 
 import Foundation
-import RxCocoa
 import RxSwift
 
 class BusStopListViewModel: AddBusDataSource {
     
     var bag = DisposeBag()
-    
     var objectList: [Any?] {
         return self.busStopList
     }
     
-    private var item: BusStopListItem = .init()
     private var busStopList: [BusStopListItem] = []
     
     func searchData(text: String) -> Completable {

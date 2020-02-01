@@ -7,104 +7,31 @@
 //
 
 import Foundation
-import RxCocoa
+import RxSwift
 
-class BusInfoListByNumberViewModel: NSObject, BusParserDelegate, BusDataSource {
-
+class BusInfoListByNumberViewModel: AddBusDataSource {
+    var bag = DisposeBag()
     var objectList: [Any?] {
-        return self.list
+        return self.busInfoList
     }
     
-    var data: Data?{
-        didSet {
-            guard data != nil else { return }
-            self.dataParser = XMLParser(data: self.data!)
-            self.parser()
-        }
-    }
-    var parserKey: String?
-    var dataParser: XMLParser?
-    var item: BusInfomation = .init()
-    var list: [BusInfomation] = []
-    var isChanged: BehaviorRelay<Bool> = .init(value: false)
+    private var busInfoList: [BusInfomation] = []
     
-    
-    func parser() {
-        guard self.dataParser != nil else { return }
-        self.dataParser?.delegate = self
-        self.dataParser?.parse()
-    }
-    
-    func resetKeyword() {
-        self.parserKey = nil
-        self.item = .init()
-    }
-    
-    func reset() {
-        self.list = []
-    }
-    
-    func add() {
-        self.list.append(self.item)
-    }
-    
-    
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        self.parserKey = elementName
-    }
-    
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        switch elementName {
-        case "itemList":
-            self.add()
-            self.resetKeyword()
-        case "ServiceResult":
-            self.isChanged.accept(true)
-        default:
-            break
-        }
-    }
-    
-    func parser(_ parser: XMLParser, foundCharacters string: String) {
-        switch self.parserKey {
-        case "busRouteId":
-            self.item.busRouteId = string
-        case "busRouteNm":
-            self.item.busRouteNm = string
-        case "corpNm":
-            self.item.corpNm = string
-        case "edStationNm":
-            self.item.edStationNm = string
-        case "firstBusTm":
-            self.item.firstBusTm = string
-        case "firstLowTm":
-            self.item.firstLowTm = string
-        case "lastBusTm":
-            self.item.lastBusTm = string
-        case "lastBusYn":
-            self.item.lastBusYn = string
-        case "lastLowTm":
-            self.item.lastLowTm = string
-        case "length":
-            self.item.length = string
-        case "routeType":
-            self.item.routeType = string
-        case "stStationNm":
-            self.item.stStationNm = string
-        case "term":
-            self.item.term = string
-        default:
-            break
-        }
-    }
-    
-    func searchData(text: String) {
+    func searchData(text: String) -> Completable {
         
-        let network = NetworkUtil.busListByNumber(text)
-        self.reset()
-        
-        network.request { (data) in
-            self.data = data
+        return .create { (completable) -> Disposable in
+            let result = BusAPIClient.getBusInfoList(num: text)
+            
+            result.subscribe(onSuccess: { [weak self] (list) in
+                guard let self = self else { return }
+                self.busInfoList = list
+                
+                completable(.completed)
+            }) {(e) in
+                completable(.error(e))
+            }.disposed(by: self.bag)
+            
+            return Disposables.create()
         }
     }
 }

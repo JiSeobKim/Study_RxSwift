@@ -54,7 +54,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="50"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusInfoCell" textLabel="v2c-US-7QO" detailTextLabel="6oC-St-dlK" style="IBUITableViewCellStyleSubtitle" id="1QH-1j-0ag">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SubtitleCell" textLabel="v2c-US-7QO" detailTextLabel="6oC-St-dlK" style="IBUITableViewCellStyleSubtitle" id="1QH-1j-0ag">
                                         <rect key="frame" x="0.0" y="28" width="398" height="55.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1QH-1j-0ag" id="Vgw-cy-IS7">
@@ -78,7 +78,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusStopCell" textLabel="c0J-at-ep6" style="IBUITableViewCellStyleDefault" id="OSi-RM-ahs">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BasicCell" textLabel="c0J-at-ep6" style="IBUITableViewCellStyleDefault" id="OSi-RM-ahs">
                                         <rect key="frame" x="0.0" y="83.5" width="398" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OSi-RM-ahs" id="Ery-VH-heD">
@@ -106,9 +106,9 @@
                             <constraint firstItem="iEj-PN-opG" firstAttribute="top" secondItem="wdy-CJ-Qgh" secondAttribute="bottom" constant="8" id="LsA-Ke-fSq"/>
                             <constraint firstItem="DpV-8e-jZ5" firstAttribute="top" secondItem="iEj-PN-opG" secondAttribute="bottom" id="WFe-DK-U9S"/>
                             <constraint firstItem="DpV-8e-jZ5" firstAttribute="leading" secondItem="ode-Gg-GEq" secondAttribute="leading" constant="8" id="XvB-72-uXS"/>
-                            <constraint firstItem="ode-Gg-GEq" firstAttribute="trailing" secondItem="iEj-PN-opG" secondAttribute="trailing" constant="8" id="ba6-P3-Xw7"/>
+                            <constraint firstItem="ode-Gg-GEq" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="iEj-PN-opG" secondAttribute="trailing" constant="8" id="ba6-P3-Xw7"/>
                             <constraint firstItem="iEj-PN-opG" firstAttribute="centerX" secondItem="P5s-rB-0ec" secondAttribute="centerX" id="nzL-gY-BKf"/>
-                            <constraint firstItem="iEj-PN-opG" firstAttribute="leading" secondItem="ode-Gg-GEq" secondAttribute="leading" constant="8" id="x0j-CB-R3u"/>
+                            <constraint firstItem="iEj-PN-opG" firstAttribute="leading" relation="lessThanOrEqual" secondItem="ode-Gg-GEq" secondAttribute="leading" constant="8" id="x0j-CB-R3u"/>
                             <constraint firstItem="wdy-CJ-Qgh" firstAttribute="top" secondItem="ode-Gg-GEq" secondAttribute="top" id="zoN-en-qsh"/>
                             <constraint firstItem="wdy-CJ-Qgh" firstAttribute="trailing" secondItem="ode-Gg-GEq" secondAttribute="trailing" id="zq7-2x-Y0j"/>
                         </constraints>

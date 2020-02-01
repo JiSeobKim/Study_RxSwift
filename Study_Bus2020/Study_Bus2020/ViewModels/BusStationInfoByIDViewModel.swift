@@ -7,79 +7,30 @@
 //
 
 import Foundation
-import RxCocoa
+import RxSwift
 
-class BusStationInfoByIDViewModel: NSObject, BusParserDelegate, BusDataSource {
-
+class BusStationInfoByIDViewModel: AddBusDataSource {
+    var bag = DisposeBag()
     var objectList: [Any?] {
-        return self.list
+        return self.busStationList
     }
     
-    var data: Data?
-    var parserKey: String?
-    var dataParser: XMLParser?
-    var item: BusStationInfoByID = .init()
-    var list: [BusStationInfoByID] = []
-    var isChanged: BehaviorRelay<Bool> = .init(value: false)
+    private var busStationList: [BusStationInfoByID] = []
     
-    
-    func parser() {
-        guard self.dataParser != nil else { return }
-        self.dataParser?.delegate = self
-        self.dataParser?.parse()
-    }
-    func reset() {
-        self.parserKey = nil
-        self.item = .init()
-    }
-    
-    func add() {
-        self.list.append(self.item)
-    }
-    
-    
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        self.parserKey = elementName
-    }
-    
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if elementName == "itemList" {
-            self.add()
-            self.reset()
+    func searchData(text: String) -> Completable {
+        
+        return .create { (completable) -> Disposable in
+            let result = BusAPIClient.getBusStationInfoList(id: text)
+            
+            result.subscribe(onSuccess: { [weak self] (list) in
+                guard let self = self else { return }
+                self.busStationList = list
+                completable(.completed)
+            }) {(e) in
+                completable(.error(e))
+            }.disposed(by: self.bag)
+            
+            return Disposables.create()
         }
-    }
-    
-    func parser(_ parser: XMLParser, foundCharacters string: String) {
-        switch self.parserKey {
-        case "busRouteId":
-            self.item.busRouteId = string
-        case "busRouteNm":
-            self.item.busRouteNm = string
-        case "busRouteType":
-            self.item.busRouteType = string
-        case "firstBusTm":
-            self.item.firstBusTm = string
-        case "firstBusTmLow":
-            self.item.firstBusTmLow = string
-        case "lastBusTm":
-            self.item.lastBusTm = string
-        case "lastBusTmLow":
-            self.item.lastBusTmLow = string
-        case "length":
-            self.item.length = string
-        case "nextBus":
-            self.item.nextBus = string
-        case "stBegin":
-            self.item.stBegin = string
-        case "stEnd":
-            self.item.stEnd = string
-        case "term":
-            self.item.term = string
-        default:
-            break
-        }
-    }
-    
-    func searchData(text: String) {
     }
 }
