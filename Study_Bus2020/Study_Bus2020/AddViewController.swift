@@ -32,6 +32,8 @@ class AddViewController: UIViewController {
             }).disposed(by: viewModelBag)
         }
     }
+    private var newSelectedViewModel: AddBusDataSource?
+    
     private var bag = DisposeBag()
     private var viewModelBag = DisposeBag()
     //0
@@ -52,12 +54,12 @@ class AddViewController: UIViewController {
                 
                 switch index {
                 case 0:
-                    self.selectedViewModel = self.busInfoListViewModel
+//                    self.selectedViewModel = self.busInfoListViewModel
                     break
                 case 1:
                     break
                 case 2:
-                    self.selectedViewModel = self.stationListViewModel
+                    self.newSelectedViewModel = self.stationListViewModel
                     break
                 default:
                     break
@@ -71,7 +73,15 @@ class AddViewController: UIViewController {
             .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .subscribe(onNext: { (text) in
                 if text != "" {
-                    self.selectedViewModel?.searchData(text: text)
+                    let complete = self.newSelectedViewModel?.searchData(text: text)
+                    
+                    complete?
+                        .subscribeOn(MainScheduler.instance)
+                        .subscribe(onCompleted: {
+                            self.tableView.reloadData()
+                        }, onError: { (e) in
+                            print("Error: \(e)")
+                        }).disposed(by: self.bag)
                 }
             }).disposed(by: bag)
     }
@@ -82,7 +92,7 @@ class AddViewController: UIViewController {
 
 extension AddViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return selectedViewModel?.objectList.count ?? 0
+        return newSelectedViewModel?.objectList.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -90,7 +100,7 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
         
         
         
-        let item = self.selectedViewModel?.objectList[indexPath.row]
+        let item = self.newSelectedViewModel?.objectList[indexPath.row]
         
         var text: String?
         

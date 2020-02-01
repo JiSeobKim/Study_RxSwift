@@ -9,5 +9,6 @@ target 'Study_Bus2020' do
 	pod 'Alamofire'
 	pod 'RxSwift'
 	pod 'RxCocoa'
+  pod 'XMLParsing', :git => 'https://github.com/ShawnMoore/XMLParsing.git'
 
 end

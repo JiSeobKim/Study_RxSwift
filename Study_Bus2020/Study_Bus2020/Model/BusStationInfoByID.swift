@@ -8,7 +8,23 @@
 
 import Foundation
 
-struct BusStationInfoByID {
+
+struct PXMLBusStationInfoByID: Codable {
+    let header: ResponseHeader
+    let body: BodyBusStationInfoByID?
+    
+    
+    private enum CodingKeys: String, CodingKey {
+        case header = "msgHeader"
+        case body = "msgBody"
+    }
+}
+
+struct BodyBusStationInfoByID: Codable {
+    var itemList: [BusStationInfoByID]?
+}
+
+struct BusStationInfoByID: Codable {
     var busRouteId: String?
     var busRouteNm: String?
     var busRouteType: String?

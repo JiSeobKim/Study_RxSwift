@@ -8,6 +8,7 @@
 
 import Foundation
 import RxCocoa
+import RxSwift
 
 protocol BusDataSource {
     var objectList: [Any?] { get }
@@ -18,4 +19,9 @@ protocol BusDataSource {
     var isChanged: BehaviorRelay<Bool> {get set}
     
     func searchData(text: String) -> Void
+}
+
+protocol AddBusDataSource {
+    var objectList: [Any?] { get }
+    func searchData(text: String) -> Completable
 }

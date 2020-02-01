@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,12 +24,16 @@
 		A04DFA9023D33D49007A9209 /* BusStopListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04DFA8F23D33D49007A9209 /* BusStopListItem.swift */; };
 		A04DFA9223D3403A007A9209 /* BusArrivalInfoOnStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04DFA9123D3403A007A9209 /* BusArrivalInfoOnStation.swift */; };
 		A04DFA9423D340A9007A9209 /* BusArrivalInfoOnStationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04DFA9323D340A9007A9209 /* BusArrivalInfoOnStationViewModel.swift */; };
-		A04DFA9623D3479A007A9209 /* BusDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04DFA9523D3479A007A9209 /* BusDataSource.swift */; };
+		A04DFA9623D3479A007A9209 /* AddBusDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04DFA9523D3479A007A9209 /* AddBusDataSource.swift */; };
 		A0786D4F23DC879B007764B5 /* Study_Bus2020_Unit_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0786D4E23DC879B007764B5 /* Study_Bus2020_Unit_Tests.swift */; };
 		A0786D5723DC88E5007764B5 /* BusInfomation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0786D5623DC88E5007764B5 /* BusInfomation.swift */; };
 		A0786D5823DC88E5007764B5 /* BusInfomation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0786D5623DC88E5007764B5 /* BusInfomation.swift */; };
 		A0786D5A23DC8ADE007764B5 /* BusInfoListByNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0786D5923DC8ADE007764B5 /* BusInfoListByNumberViewModel.swift */; };
 		A0786D5B23DC8ADE007764B5 /* BusInfoListByNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0786D5923DC8ADE007764B5 /* BusInfoListByNumberViewModel.swift */; };
+		A094356D23E461C7008B725B /* ResponseHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A094356C23E461C7008B725B /* ResponseHeader.swift */; };
+		A094356E23E461C7008B725B /* ResponseHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A094356C23E461C7008B725B /* ResponseHeader.swift */; };
+		A094357123E4641E008B725B /* BusAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A094357023E4641E008B725B /* BusAPIClient.swift */; };
+		A094357223E4641E008B725B /* BusAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A094357023E4641E008B725B /* BusAPIClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,12 +66,14 @@
 		A04DFA8F23D33D49007A9209 /* BusStopListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopListItem.swift; sourceTree = "<group>"; };
 		A04DFA9123D3403A007A9209 /* BusArrivalInfoOnStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusArrivalInfoOnStation.swift; sourceTree = "<group>"; };
 		A04DFA9323D340A9007A9209 /* BusArrivalInfoOnStationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusArrivalInfoOnStationViewModel.swift; sourceTree = "<group>"; };
-		A04DFA9523D3479A007A9209 /* BusDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusDataSource.swift; sourceTree = "<group>"; };
+		A04DFA9523D3479A007A9209 /* AddBusDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBusDataSource.swift; sourceTree = "<group>"; };
 		A0786D4C23DC879B007764B5 /* Study_Bus2020_Unit_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Study_Bus2020_Unit_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0786D4E23DC879B007764B5 /* Study_Bus2020_Unit_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Study_Bus2020_Unit_Tests.swift; sourceTree = "<group>"; };
 		A0786D5023DC879B007764B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0786D5623DC88E5007764B5 /* BusInfomation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusInfomation.swift; sourceTree = "<group>"; };
 		A0786D5923DC8ADE007764B5 /* BusInfoListByNumberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusInfoListByNumberViewModel.swift; sourceTree = "<group>"; };
+		A094356C23E461C7008B725B /* ResponseHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseHeader.swift; sourceTree = "<group>"; };
+		A094357023E4641E008B725B /* BusAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusAPIClient.swift; sourceTree = "<group>"; };
 		C72E700B51473AB4B25B4168 /* Pods-Study_Bus2020.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Study_Bus2020.release.xcconfig"; path = "Pods/Target Support Files/Pods-Study_Bus2020/Pods-Study_Bus2020.release.xcconfig"; sourceTree = "<group>"; };
 		CED74CC4730B30F9F9637C22 /* Pods_Study_Bus2020.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Study_Bus2020.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -118,9 +124,10 @@
 				6B5CE4EE23D2EC6A007E2ADD /* SceneDelegate.swift */,
 				6B5CE50323D2EE05007E2ADD /* MainViewController.swift */,
 				6B5CE50523D2EF8C007E2ADD /* AddViewController.swift */,
+				A094356F23E4639B008B725B /* Protocols */,
 				A04DFA8C23D33D2E007A9209 /* Model */,
-				A04DFA8523D32DC8007A9209 /* Parser */,
-				6B5CE50723D2F2D5007E2ADD /* Utils */,
+				A04DFA8523D32DC8007A9209 /* ViewModels */,
+				6B5CE50723D2F2D5007E2ADD /* Network */,
 				6B5CE4F223D2EC6A007E2ADD /* Main.storyboard */,
 				6B5CE4F823D2EC6B007E2ADD /* Assets.xcassets */,
 				6B5CE4FA23D2EC6B007E2ADD /* LaunchScreen.storyboard */,
@@ -130,12 +137,14 @@
 			path = Study_Bus2020;
 			sourceTree = "<group>";
 		};
-		6B5CE50723D2F2D5007E2ADD /* Utils */ = {
+		6B5CE50723D2F2D5007E2ADD /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				A094356C23E461C7008B725B /* ResponseHeader.swift */,
 				6B5CE50823D2F2E4007E2ADD /* NetworkUtil.swift */,
+				A094357023E4641E008B725B /* BusAPIClient.swift */,
 			);
-			path = Utils;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		88A2B9A53FBF7CA8866D36F4 /* Pods */ = {
@@ -147,17 +156,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		A04DFA8523D32DC8007A9209 /* Parser */ = {
+		A04DFA8523D32DC8007A9209 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				A04DFA8623D32DED007A9209 /* BusStopListViewModel.swift */,
 				A04DFA9323D340A9007A9209 /* BusArrivalInfoOnStationViewModel.swift */,
 				A04DFA8A23D33D16007A9209 /* BusStationInfoByIDViewModel.swift */,
 				A0786D5923DC8ADE007764B5 /* BusInfoListByNumberViewModel.swift */,
-				A04DFA8823D33532007A9209 /* BusParserDelegate.swift */,
-				A04DFA9523D3479A007A9209 /* BusDataSource.swift */,
 			);
-			path = Parser;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		A04DFA8C23D33D2E007A9209 /* Model */ = {
@@ -178,6 +185,15 @@
 				A0786D5023DC879B007764B5 /* Info.plist */,
 			);
 			path = Study_Bus2020_Unit_Tests;
+			sourceTree = "<group>";
+		};
+		A094356F23E4639B008B725B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A04DFA8823D33532007A9209 /* BusParserDelegate.swift */,
+				A04DFA9523D3479A007A9209 /* AddBusDataSource.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		A4F4DB20749476CAE88042C5 /* Frameworks */ = {
@@ -293,26 +309,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Study_Bus2020/Pods-Study_Bus2020-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Study_Bus2020/Pods-Study_Bus2020-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Study_Bus2020/Pods-Study_Bus2020-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Study_Bus2020/Pods-Study_Bus2020-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Study_Bus2020/Pods-Study_Bus2020-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E622A9D18A4E49507274FD76 /* [CP] Check Pods Manifest.lock */ = {
@@ -354,11 +359,13 @@
 				A04DFA9023D33D49007A9209 /* BusStopListItem.swift in Sources */,
 				6B5CE4EF23D2EC6A007E2ADD /* SceneDelegate.swift in Sources */,
 				6B5CE50423D2EE05007E2ADD /* MainViewController.swift in Sources */,
+				A094357123E4641E008B725B /* BusAPIClient.swift in Sources */,
 				A04DFA8923D33532007A9209 /* BusParserDelegate.swift in Sources */,
 				A0786D5A23DC8ADE007764B5 /* BusInfoListByNumberViewModel.swift in Sources */,
-				A04DFA9623D3479A007A9209 /* BusDataSource.swift in Sources */,
+				A04DFA9623D3479A007A9209 /* AddBusDataSource.swift in Sources */,
 				A0786D5723DC88E5007764B5 /* BusInfomation.swift in Sources */,
 				A04DFA9423D340A9007A9209 /* BusArrivalInfoOnStationViewModel.swift in Sources */,
+				A094356D23E461C7008B725B /* ResponseHeader.swift in Sources */,
 				A04DFA8723D32DED007A9209 /* BusStopListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,7 +376,9 @@
 			files = (
 				A0786D5823DC88E5007764B5 /* BusInfomation.swift in Sources */,
 				A0786D5B23DC8ADE007764B5 /* BusInfoListByNumberViewModel.swift in Sources */,
+				A094357223E4641E008B725B /* BusAPIClient.swift in Sources */,
 				A0786D4F23DC879B007764B5 /* Study_Bus2020_Unit_Tests.swift in Sources */,
+				A094356E23E461C7008B725B /* ResponseHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

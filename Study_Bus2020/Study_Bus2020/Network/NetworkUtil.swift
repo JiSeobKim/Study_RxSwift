@@ -9,7 +9,12 @@
 import Foundation
 import Alamofire
 
-
+enum  BusAPIError: Error {
+    case invalidData
+    case initializer
+    case noResult
+    
+}
 enum NetworkUtil {
     // 버스 정류소 목록 정보 조회 by 검색어
     case busStopListByKeyword(_ text: String)
@@ -70,6 +75,5 @@ enum NetworkUtil {
         }
         
     }
-    
     
 }
