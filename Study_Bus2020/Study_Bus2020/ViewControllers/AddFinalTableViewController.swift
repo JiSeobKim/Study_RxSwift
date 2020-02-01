@@ -13,8 +13,8 @@ import CoreData
 class AddFinalTableViewController: UITableViewController {
     
     enum SearchType {
-        case findStation(routeID: String)
-        case findBus(stationID: String)
+        case findStation(routeInfo: (routeId: String, routeNm: String))
+        case findBus(stationInfo: (stationId: String, stationNm: String))
     }
     
     var searchType: SearchType?
@@ -23,8 +23,6 @@ class AddFinalTableViewController: UITableViewController {
     private var searchText: String?
     private var bag = DisposeBag()
     
-    private var routeID: String?
-    private var stationID: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,16 +30,15 @@ class AddFinalTableViewController: UITableViewController {
         guard self.searchType != nil else { return }
         
         switch searchType! {
-        case .findStation(let route):
+        case .findStation(let routeInfo):
             self.selectedViewModel = BusStationInfoByRouteIDViewModel()
-            self.searchText = route
+            self.searchText = routeInfo.routeId
             self.title = "정류장 선택"
-            self.routeID = route
-        case .findBus(let station):
+        case .findBus(let stationInfo):
             self.selectedViewModel = BusStationInfoByIDViewModel()
-            self.searchText = station
+            
             self.title = "버스 선택"
-            self.stationID = station
+            self.searchText = stationInfo.stationId
         }
         
         
@@ -58,19 +55,21 @@ class AddFinalTableViewController: UITableViewController {
         }
     }
     
-    private func save(route: String?, station: String?) {
+    private func save(routeId: String?, routeNm: String?, stationId: String?, stationNm: String?) {
         guard
-            let route = route,
-            let station = station
+            let routeId = routeId,
+            let routeNm = routeNm,
+            let stationId = stationId,
+            let stationNm = stationNm
             else { return }
         
-        // TODO: Core Data 적용중
-//        do {
-//            try CoreDataClient.saveBusData(route: route, station: station)
-//            print("Save Success")
-//        } catch {
-//            print("Save Error: \(error)")
-//        }
+        do {
+            try CoreDataClient.saveBusData(routeId: routeId, routeNm: routeNm, stationId: stationId, stationNm: stationNm)
+            self.performSegue(withIdentifier: "goMain", sender: nil)
+            print("Save Success")
+        } catch {
+            print("Save Error: \(error)")
+        }
     }
 
     // MARK: - Table view data source
@@ -95,17 +94,18 @@ class AddFinalTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch self.searchType {
-        case .findStation(let route):
+        case .findStation(let routeInfo):
             let item = self.selectedViewModel?.objectList[indexPath.row] as? BusStationInfoByRouteID
             let stationID = item?.stId
             
-            self.save(route: route, station: stationID)
+            self.save(routeId: routeInfo.routeId, routeNm: routeInfo.routeNm, stationId: stationID, stationNm: item?.stNm)
             break
-        case .findBus(let station):
+        case .findBus(let stationInfo):
             let item = self.selectedViewModel?.objectList[indexPath.row] as? BusStationInfoByID
             let routeID = item?.busRouteId
+            let routeNm = item?.busRouteNm
             
-            self.save(route: routeID, station: station)
+            self.save(routeId: routeID, routeNm: routeNm, stationId: stationInfo.stationId, stationNm: stationInfo.stationNm)
             break
         case .none:
             break

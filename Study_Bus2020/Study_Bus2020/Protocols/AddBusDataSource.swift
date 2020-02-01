@@ -10,17 +10,6 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-protocol BusDataSource {
-    var objectList: [Any?] { get }
-    
-    var data: Data? {get set}
-    var parserKey: String? {get set}
-    var dataParser: XMLParser? {get set}
-    var isChanged: BehaviorRelay<Bool> {get set}
-    
-    func searchData(text: String) -> Void
-}
-
 protocol AddBusDataSource {
     var bag: DisposeBag {get set}
     var objectList: [Any?] { get }

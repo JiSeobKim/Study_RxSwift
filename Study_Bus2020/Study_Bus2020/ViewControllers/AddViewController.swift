@@ -38,8 +38,10 @@ class AddViewController: UIViewController {
             switch selectedType {
             case .searcBusNum:
                 self.selectedViewModel = BusListByNumberViewModel()
+                
             case .searchStationID:
                 self.selectedViewModel = BusStationInfoByIDViewModel()
+                
             case .searchStationNm:
                 self.selectedViewModel = BusStationInfoByKeywordViewModel()
             }
@@ -55,16 +57,19 @@ class AddViewController: UIViewController {
         
         switch segue.destination {
         case is AddFinalTableViewController:
-            guard let item = sender as? String else { return }
-            let vc = segue.destination as! AddFinalTableViewController
             
+            let vc = segue.destination as! AddFinalTableViewController
+            guard let item = sender as? (String,String) else { return }
+
             switch self.selectedType {
             case .searcBusNum:
-                vc.searchType = .findStation(routeID: item)
+                vc.searchType = .findStation(routeInfo: item)
+                
             case .searchStationID:
                 break
+                
             case .searchStationNm:
-                vc.searchType = .findBus(stationID: item)
+                vc.searchType = .findBus(stationInfo: item)
                 break
             }
             
@@ -134,17 +139,17 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        var item: String?
+        var item: Any?
         
         switch self.selectedType {
         case .searcBusNum:
             let value = self.selectedViewModel?.objectList[indexPath.row] as! BusInfomation
-            item = value.busRouteId
+            item = (value.busRouteId, value.busRouteNm)
         case .searchStationID:
             break
         case .searchStationNm:
             let value = self.selectedViewModel?.objectList[indexPath.row] as! BusStationInfoByKeyword
-            item = value.arsId
+            item = (value.arsId, value.stNm)
             break
         }
         self.performSegue(withIdentifier: "ShowFinalStep", sender: item)

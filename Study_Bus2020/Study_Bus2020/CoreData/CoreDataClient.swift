@@ -17,14 +17,36 @@ struct CoreDataClient {
     static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     
-    static func saveBusData(route: String, station: String) throws {
+    static func saveBusData(routeId: String, routeNm: String, stationId: String, stationNm: String) throws {
         
-        let newData = BusData(entity: BusData.entity(), insertInto: context)
+        let con = context
+        let entity = BusData.entity()
         
-        newData.busRouteId = route
-        newData.stationId = station
-        newData.addedTimeInterval = Double(CACurrentMediaTime())
+        let newData = BusData(entity: entity, insertInto: con)
+        
+        newData.routeId = routeId
+        newData.stationId = stationId
+        newData.addedDate = Date()
+        newData.stationNm = stationNm
+        newData.routeNm = routeNm
         
         try context.save()
+    }
+    
+    static func fetchBusDatas() -> [BusData] {
+        let con = context
+        
+        let request = BusData.fetchRequest() as NSFetchRequest <BusData>
+        
+        
+        do {
+            let data = try con.fetch(request)
+            return data
+            
+        } catch {
+            print("Error: \(error)")
+            return []
+        }
+        
     }
 }

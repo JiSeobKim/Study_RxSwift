@@ -17,8 +17,10 @@ extension BusData {
         return NSFetchRequest<BusData>(entityName: "BusData")
     }
 
-    @NSManaged public var busRouteId: String?
+    @NSManaged public var addedDate: Date?
+    @NSManaged public var routeId: String?
     @NSManaged public var stationId: String?
-    @NSManaged public var addedTimeInterval: Double
+    @NSManaged public var stationNm: String?
+    @NSManaged public var routeNm: String?
 
 }
