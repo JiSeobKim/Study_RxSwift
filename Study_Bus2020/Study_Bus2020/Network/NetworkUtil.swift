@@ -17,11 +17,14 @@ enum  BusAPIError: Error {
 }
 enum NetworkUtil {
     // 버스 정류소 목록 정보 조회 by 검색어
-    case busStopListByKeyword(_ text: String)
+    case stationListByKeyword(_ text: String)
+    // 버스 노선 정류장 조회
+    case stationListByBus(routeid: String)
     // 정류소의 버스 목록 조회 by ID
-    case stationBusListByStationID(_ id: String)
+    case busListByStationID(_ id: String)
     // 버스 번호로 버스 리스트 검색
     case busListByNumber(_ num: String)
+    
     
     
     static var serviceKey = "esWE%2F4MoJGj6WtDlz9ohkyCCrWrrinS30s21ynJD2s9N2B5zv7Z4rGnQKg1QT84eaTOQSlgUTPpTzOYUU5MIRA%3D%3D"
@@ -32,12 +35,14 @@ enum NetworkUtil {
         var base = "http://ws.bus.go.kr/api/rest"
         
         switch self {
-        case .busStopListByKeyword:
+        case .stationListByKeyword:
             base += "/stationinfo/getStationByName"
-        case .stationBusListByStationID:
+        case .busListByStationID:
             base += "/stationinfo/getRouteByStation"
         case .busListByNumber:
             base += "/busRouteInfo/getBusRouteList"
+        case .stationListByBus:
+            base += "/busRouteInfo/getStaionByRoute"
         }
         
         return base
@@ -48,12 +53,14 @@ enum NetworkUtil {
         var query = ""
         
         switch self {
-        case .busStopListByKeyword(let text):
+        case .stationListByKeyword(let text):
             query = "stSrch=\(text)"
-        case .stationBusListByStationID(let id):
+        case .busListByStationID(let id):
             query = "arsId=\(id)"
         case .busListByNumber(let num):
             query = "strSrch=\(num)"
+        case .stationListByBus(let routeId):
+            query = "busRouteId=\(routeId)"
         }
         query = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         query += "&serviceKey=\(NetworkUtil.serviceKey)"

@@ -1,5 +1,5 @@
 //
-//  BusStopListItem.swift
+//  BusStationInfoByKeyword.swift
 //  Study_Bus2020
 //
 //  Created by 김지섭 on 2020/01/18.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct PXMLBusStopListItem: Codable {
+struct PXMLBusStationInfoByKeyword: Codable {
     let header: ResponseHeader
-    let body: BodyBusStopListItem?
+    let body: BodyBusStationInfoByKeyword?
     
     
     private enum CodingKeys: String, CodingKey {
@@ -19,11 +19,12 @@ struct PXMLBusStopListItem: Codable {
     }
 }
 
-struct BodyBusStopListItem: Codable {
-    var itemList: [BusStopListItem]?
+struct BodyBusStationInfoByKeyword: Codable {
+    var itemList: [BusStationInfoByKeyword]?
 }
 
-struct BusStopListItem: Codable {
+struct BusStationInfoByKeyword: Codable, AddCellAvailable {
+    
     var arsId: String?
     var posX: String?
     var posY: String?
@@ -31,6 +32,18 @@ struct BusStopListItem: Codable {
     var stNm: String?
     var tmX: String?
     var tmY: String?
+    
+    var addCellTitle: String? {
+        return self.stNm
+    }
+    
+    var addCellSubtitle: String? {
+        if self.arsId != nil {
+            return "정류장 번호: \(self.arsId!)"
+        } else {
+            return nil
+        }
+    }
     
     init() {
         self.arsId = nil

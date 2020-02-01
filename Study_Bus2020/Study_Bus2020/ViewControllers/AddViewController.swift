@@ -28,25 +28,48 @@ class AddViewController: UIViewController {
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    private var newSelectedViewModel: AddBusDataSource?
+    private var selectedViewModel: AddBusDataSource?
     
     private var bag = DisposeBag()
+
+    
+    var selectedType: SelectedType = .searcBusNum {
+        didSet {
+            switch selectedType {
+            case .searcBusNum:
+                self.selectedViewModel = BusListByNumberViewModel()
+            case .searchStationID:
+                self.selectedViewModel = BusStationInfoByIDViewModel()
+            case .searchStationNm:
+                self.selectedViewModel = BusStationInfoByKeywordViewModel()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.bindingItems()
     }
     
-    var selectedType: SelectedType = .searcBusNum {
-        didSet {
-            switch selectedType {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        switch segue.destination {
+        case is AddFinalTableViewController:
+            guard let item = sender as? String else { return }
+            let vc = segue.destination as! AddFinalTableViewController
+            
+            switch self.selectedType {
             case .searcBusNum:
-                self.newSelectedViewModel = BusInfoListByNumberViewModel()
+                vc.searchType = .findStation(routeID: item)
             case .searchStationID:
-                self.newSelectedViewModel = BusStationInfoByIDViewModel()
+                break
             case .searchStationNm:
-                self.newSelectedViewModel = BusStopListViewModel()
+                vc.searchType = .findBus(stationID: item)
+                break
             }
+            
+        default:
+            break
         }
     }
     
@@ -71,7 +94,7 @@ class AddViewController: UIViewController {
             .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .subscribe(onNext: { (text) in
                 if text != "" {
-                    let complete = self.newSelectedViewModel?.searchData(text: text)
+                    let complete = self.selectedViewModel?.searchData(text: text)
                     
                     complete?
                         .subscribeOn(MainScheduler.instance)
@@ -91,47 +114,39 @@ class AddViewController: UIViewController {
 
 extension AddViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return newSelectedViewModel?.objectList.count ?? 0
+        return selectedViewModel?.objectList.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let item = self.newSelectedViewModel?.objectList[indexPath.row]
-        
-        switch self.selectedType {
-        case .searcBusNum: // 버스 정보
-            let realItem = item as? BusInfomation
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SubtitleCell", for: indexPath)
-            cell.textLabel?.text = realItem?.busRouteNm
-            cell.detailTextLabel?.text = "출발지: \((realItem?.stStationNm) ?? "")"
-            return cell
-            
-//        case is BusStationInfoByID:
-//            let realItem = item as? BusStationInfoByID
-//
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "SubtitleCell", for: indexPath)
-//
-//            cell.textLabel?.text = realItem?.busRouteNm
-//
-//            if let start = realItem?.stStationNm {
-//                cell.detailTextLabel?.text = "출발지: \(start)"
-//            }
-//            return cell
-            
-        case .searchStationNm:
-            let realItem = item as? BusStopListItem
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SubtitleCell", for: indexPath)
-            cell.textLabel?.text = realItem?.stNm
-            cell.detailTextLabel?.text = "정류장 번호: \((realItem?.arsId) ?? "")"
-            
-            return cell
-            
-        default:
+        guard let item = self.selectedViewModel?.objectList[indexPath.row] as? AddCellAvailable else {
             return UITableViewCell()
         }
         
         
+        let cellId = item.addCellSubtitle == nil ? "BasicCell" : "SubtitleCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        
+        cell.textLabel?.text = item.addCellTitle
+        cell.detailTextLabel?.text = item.addCellSubtitle
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        var item: String?
+        
+        switch self.selectedType {
+        case .searcBusNum:
+            let value = self.selectedViewModel?.objectList[indexPath.row] as! BusInfomation
+            item = value.busRouteId
+        case .searchStationID:
+            break
+        case .searchStationNm:
+            let value = self.selectedViewModel?.objectList[indexPath.row] as! BusStationInfoByKeyword
+            item = value.arsId
+            break
+        }
+        self.performSegue(withIdentifier: "ShowFinalStep", sender: item)
     }
 }

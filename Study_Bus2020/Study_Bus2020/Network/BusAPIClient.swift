@@ -13,10 +13,10 @@ import XMLParsing
 struct BusAPIClient {
     
     // MARK: -  버스 정류장 리스트 By 키워드
-    static func getBusStationInfoList(keyword: String) -> Single<[BusStopListItem]> {
+    static func getBusStationInfoList(keyword: String) -> Single<[BusStationInfoByKeyword]> {
         return Single.create { (single) -> Disposable in
             
-            let network = NetworkUtil.busStopListByKeyword(keyword)
+            let network = NetworkUtil.stationListByKeyword(keyword)
             
             network.request { (data) in
                 let strData = String(data: data, encoding: .utf8)
@@ -29,7 +29,46 @@ struct BusAPIClient {
                 let decoder = XMLDecoder()
                 
                 do {
-                    let result = try decoder.decode(PXMLBusStopListItem.self, from: cData)
+                    let result = try decoder.decode(PXMLBusStationInfoByKeyword.self, from: cData)
+                    
+                    guard result.header.headerCd != 4 else {
+                        single(.error(BusAPIError.noResult))
+                        return
+                    }
+                    
+                    if let list = result.body?.itemList {
+                        single(.success(list))
+                    } else {
+                        single(.error(BusAPIError.invalidData))
+                    }
+                    
+                } catch {
+                    single(.error(error))
+                }
+                
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    // MARK: - 정류장 리스트 by 버스 루트
+    static func getBusStationInfoList(routeId: String) -> Single<[BusStationInfoByRouteID]> {
+        return Single.create { (single) -> Disposable in
+            let network = NetworkUtil.stationListByBus(routeid: routeId)
+            
+            network.request { (data) in
+                let strData = String(data: data, encoding: .utf8)
+                
+                guard let cData = strData?.replacingOccurrences(of: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>", with: "").data(using: .utf8) else {
+                    single(.error(BusAPIError.invalidData))
+                    return
+                }
+                
+                let decoder = XMLDecoder()
+                
+                do {
+                    let result = try decoder.decode(PXMLBusStationInfoByRouteID.self, from: cData)
                     
                     guard result.header.headerCd != 4 else {
                         single(.error(BusAPIError.noResult))
@@ -53,10 +92,10 @@ struct BusAPIClient {
     }
     
     // MARK: -  버스 정류장 리스트 By 정류장 번호
-    static func getBusStationInfoList(id: String) -> Single<[BusStationInfoByID]> {
+    static func getBusList(id: String) -> Single<[BusStationInfoByID]> {
         return Single.create { (single) -> Disposable in
             
-            let network = NetworkUtil.stationBusListByStationID(id)
+            let network = NetworkUtil.busListByStationID(id)
             
             network.request { (data) in
                 let strData = String(data: data, encoding: .utf8)
@@ -93,7 +132,7 @@ struct BusAPIClient {
     }
     
     // MARK: -  버스 리스트 By 버스 번호
-    static func getBusInfoList(num: String) -> Single<[BusInfomation]> {
+    static func getBusList(num: String) -> Single<[BusInfomation]> {
         return Single.create { (single) -> Disposable in
             let network = NetworkUtil.busListByNumber(num)
             
@@ -130,4 +169,6 @@ struct BusAPIClient {
             return Disposables.create()
         }
     }
+    
+    
 }

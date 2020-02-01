@@ -1,30 +1,31 @@
 //
-//  BusInfoListByNumberViewModel.swift
+//  ParserBusStopList.swift
 //  Study_Bus2020
 //
-//  Created by 김지섭 on 2020/01/25.
+//  Created by 김지섭 on 2020/01/18.
 //  Copyright © 2020 kimjiseob. All rights reserved.
 //
 
 import Foundation
 import RxSwift
 
-class BusInfoListByNumberViewModel: AddBusDataSource {
+class BusStationInfoByKeywordViewModel: AddBusDataSource {
+    
     var bag = DisposeBag()
     var objectList: [Any?] {
-        return self.busInfoList
+        return self.busStopList
     }
     
-    private var busInfoList: [BusInfomation] = []
+    private var busStopList: [BusStationInfoByKeyword] = []
     
     func searchData(text: String) -> Completable {
         
         return .create { (completable) -> Disposable in
-            let result = BusAPIClient.getBusInfoList(num: text)
+            let result = BusAPIClient.getBusStationInfoList(keyword: text)
             
             result.subscribe(onSuccess: { [weak self] (list) in
                 guard let self = self else { return }
-                self.busInfoList = list
+                self.busStopList = list
                 
                 completable(.completed)
             }) {(e) in
@@ -35,4 +36,3 @@ class BusInfoListByNumberViewModel: AddBusDataSource {
         }
     }
 }
-

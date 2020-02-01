@@ -23,7 +23,7 @@ struct BodyBusInfomations: Codable {
     var itemList: [BusInfomation]?
 }
 
-struct BusInfomation: Codable {
+struct BusInfomation: Codable, AddCellAvailable {
     var busRouteId: String?     // 100100055
     var busRouteNm: String?     // 340
     var corpNm: String?         // 서울승합  02-429-3104
@@ -37,6 +37,18 @@ struct BusInfomation: Codable {
     var routeType: String?      // 3
     var stStationNm: String?    // 강동공영차고지
     var term: String?           //  7
+    
+    var addCellTitle: String? {
+        return self.busRouteNm
+    }
+    
+    var addCellSubtitle: String? {
+        if self.stStationNm != nil {
+            return "출발지: \(stStationNm!)"
+        } else {
+            return nil
+        }
+    }
     
     init() {
         self.busRouteId = nil

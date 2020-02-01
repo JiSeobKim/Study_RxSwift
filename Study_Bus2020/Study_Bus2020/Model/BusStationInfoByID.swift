@@ -24,7 +24,7 @@ struct BodyBusStationInfoByID: Codable {
     var itemList: [BusStationInfoByID]?
 }
 
-struct BusStationInfoByID: Codable {
+struct BusStationInfoByID: Codable, AddCellAvailable {
     var busRouteId: String?
     var busRouteNm: String?
     var busRouteType: String?
@@ -37,6 +37,18 @@ struct BusStationInfoByID: Codable {
     var stBegin: String?
     var stEnd: String?
     var term: String?
+    
+    var addCellTitle: String? {
+        return busRouteNm
+    }
+    
+    var addCellSubtitle: String? {
+        if self.stBegin != nil {
+            return "출발지: \(stBegin!)"
+        } else {
+            return nil
+        }
+    }
     
     init() {
         self.busRouteId = nil
