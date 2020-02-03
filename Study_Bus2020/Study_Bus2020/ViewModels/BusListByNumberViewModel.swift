@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 class BusListByNumberViewModel: AddBusDataSource {
-    var bag = DisposeBag()
+
     var objectList: [Any?] {
         return self.busInfoList
     }
@@ -22,16 +22,16 @@ class BusListByNumberViewModel: AddBusDataSource {
         return .create { (completable) -> Disposable in
             let result = BusAPIClient.getBusList(num: text)
             
-            result.subscribe(onSuccess: { [weak self] (list) in
+            let disposable = result.subscribe(onSuccess: { [weak self] (list) in
                 guard let self = self else { return }
                 self.busInfoList = list
                 
                 completable(.completed)
             }) {(e) in
                 completable(.error(e))
-            }.disposed(by: self.bag)
+            }
             
-            return Disposables.create()
+            return disposable
         }
     }
 }

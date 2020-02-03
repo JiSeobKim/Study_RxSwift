@@ -11,7 +11,6 @@ import RxSwift
 
 class BusStationInfoByKeywordViewModel: AddBusDataSource {
     
-    var bag = DisposeBag()
     var objectList: [Any?] {
         return self.busStopList
     }
@@ -23,16 +22,16 @@ class BusStationInfoByKeywordViewModel: AddBusDataSource {
         return .create { (completable) -> Disposable in
             let result = BusAPIClient.getBusStationInfoList(keyword: text)
             
-            result.subscribe(onSuccess: { [weak self] (list) in
+            let disposable = result.subscribe(onSuccess: { [weak self] (list) in
                 guard let self = self else { return }
                 self.busStopList = list
                 
                 completable(.completed)
             }) {(e) in
                 completable(.error(e))
-            }.disposed(by: self.bag)
+            }
             
-            return Disposables.create()
+            return disposable
         }
     }
 }
